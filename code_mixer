@@ -29,7 +29,6 @@ w2=((2*pi*frf)+(2*pi*flo));
 vamp =(v1*v2)/2;
 vif=vrf'*vlo;
 subplot(2,2,2)
-14
 plot(n, vrf, n, vlo)
 title("Entradas RF e LO")
 legend ('RF','OL')
