@@ -1,0 +1,48 @@
+clear all;
+n=0:0.01:4;
+i = imread = ('mixer_img.jpg')
+descricao = menu('Um mixer funciona com duas entradas, Vrf = v*cos(wt) e Vlo = v*cos(wt), e uma saida Vif.', 'Clique em "OK"');
+prompt = {'entre com o valor v1', 'entre com o valor de F (frequencia), onde, w=2*pi*f', 'entre com o t (válido para RF e LO)'};
+dlg_title = 'Valores da entrada Vrf';
+numlines= 1;
+def = {'','',''};
+answer = inputdlg(prompt,dlg_title,numlines,def);
+%ordem de entrada na caixa de Vlo
+v1 = str2num(answer{1});
+flo = str2num(answer{2});
+t = str2num(answer{3});
+prompt = {'entre com o valor v2', 'entre com o valor de F, onde, w=2*pi*f'};
+dlg_title = 'Valores da entrada Vlo';
+numlines= 1;
+def = {'',''};
+answer = inputdlg(prompt,dlg_title,numlines,def);
+%ordem de entrada na caixa de Vrf
+v2 = str2num(answer{1});
+frf = str2num(answer{2});
+%equações de entrada
+vrf=v1*cos(2*pi*n*frf*t);
+vlo=v2*cos(2*pi*n*flo*t);
+%frequencias geradas
+w1=((2*pi*frf)-(2*pi*flo));
+w2=((2*pi*frf)+(2*pi*flo));
+%Amplitude máxima de Vif
+vamp =(v1*v2)/2;
+vif=vrf'*vlo;
+subplot(2,2,2)
+14
+plot(n, vrf, n, vlo)
+title("Entradas RF e LO")
+legend ('RF','OL')
+subplot(2,2,3)
+stem(w1, vamp, 'r')
+title("Valor de Frf - Flo")
+xlabel("Frequência 1")
+subplot(2,2,4)
+axis
+stem(w2, vamp, 'g')
+title("Valor de Frf + Flo")
+xlabel("Frequência 2")
+subplot(2,2,1)
+axis
+%plot(imshow(i))
+%title("Modelo Mixer")
